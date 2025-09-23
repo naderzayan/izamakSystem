@@ -85,7 +85,7 @@ export default function MainPartyData() {
                     <Link to="/createnewparty">+ إضافة حفل جديد</Link>
                 </button>
                 <div>
-                    <img src="logo.svg" alt="" />
+                    <Link to='/mainpartydata'><img src="logo.svg" alt="" /></Link>
                 </div>
                 <div className="search">
                     <input type="search" placeholder="ادخل اسم الحفلة" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />

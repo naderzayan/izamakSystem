@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../style/_createNewParty.scss";
 import { FaCloudUploadAlt } from "react-icons/fa";
 
@@ -49,6 +49,7 @@ export default function CreateNewParty() {
 
     return (
         <main className="mainOfCreateNewParty">
+            <Link to='/mainpartydata'><img src="logo.svg" alt="" /></Link>
             <h1 className="title">إضافة حفل جديد</h1>
 
             {loading ? (

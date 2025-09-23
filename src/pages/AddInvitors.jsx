@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
 import "../style/_addInvitors.scss";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function AddInvitors() {
     const location = useLocation();
@@ -99,8 +99,8 @@ export default function AddInvitors() {
 
             <div className="addDetailis">
                 {error && <p className="error">{error}</p>}
+                <Link to='/mainpartydata'><img src="logo.svg" alt="" /></Link>
                 <h2>أدخل بيانات المدعو</h2>
-
                 <div className="name">
                     <label>الاسم</label>
                     <input type="text" placeholder="الاسم" value={name} onChange={(e) => setName(e.target.value)} />
@@ -108,7 +108,7 @@ export default function AddInvitors() {
 
                 <div className="phoneNum">
                     <label>رقم الهاتف</label>
-                    <input type="text" placeholder="رقم الهاتف" value={phone} onChange={(e) => setPhone(e.target.value)} />
+                    <input type="number" placeholder="رقم الهاتف" value={phone} onChange={(e) => setPhone(e.target.value)} />
                 </div>
 
                 <div className="numOfInvitations">
