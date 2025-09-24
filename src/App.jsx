@@ -4,6 +4,7 @@ import Login from './pages/Login'
 import CreateNewParty from './pages/CreateNewParty'
 import MainPartyData from './pages/MainPartyData'
 import AddInvitors from './pages/AddInvitors'
+import InvitorsPage from './pages/InvitorsPage'
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
           <Route path='/createnewparty' element={<CreateNewParty />}></Route>
           <Route path='/mainpartydata' element={<MainPartyData />}></Route>
           <Route path='/addinvitors' element={<AddInvitors />}></Route>
+          <Route path='/invitorspage' element={<InvitorsPage />}></Route>
         </Routes>
       </Router>
     </main>

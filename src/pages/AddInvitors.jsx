@@ -80,7 +80,7 @@ export default function AddInvitors() {
     return (
         <main className="mainOfAddInvitors">
             <div className="sideBar">
-                <h1>قائمة المدعوين</h1>
+                <Link to='/invitorspage'><h1>قائمة المدعوين</h1></Link>
                 <ul>
                     {loading ? (
                         <p className="loading"> جاري تحميل البيانات...</p>

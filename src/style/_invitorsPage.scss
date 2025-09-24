@@ -1,0 +1,82 @@
+.invitorsPage {
+  background: #d9cbe5;
+  min-height: 100vh;
+  padding: 20px;
+  direction: rtl;
+
+  .pageHeader {
+    display: flex;
+    justify-content: center;
+
+    .logo {
+      height: 150px;
+      width: 150px;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 2.5em;
+
+      input {
+        border: 1px solid #000;
+        padding: 8px 12px;
+        border-radius: .5em;
+        height: 2.5em;
+      }
+
+      button {
+        background: #7a6b88;
+        color: #fff;
+        height: 2.5em;
+        border: none;
+        padding: 8px 16px;
+        border-radius: .5em;
+        cursor: pointer;
+
+        &:hover {
+          border: 1px solid #000;
+          background: #d9cbe5;
+          color: #000;
+        }
+      }
+
+      select {
+        border: 1px solid #aaa;
+        padding: 8px 12px;
+        border-radius: .5em;
+        height: 2.5em;
+      }
+    }
+  }
+
+  .loading {
+    text-align: center;
+    font-size: 25px;
+    color: #7a6b88;
+  }
+
+  .invitorsTable {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+
+    th,
+    td {
+      border: 1px solid #000;
+      padding: 10px;
+      text-align: center;
+    }
+
+    thead {
+      background: #7a6b88;
+      color: #fff;
+    }
+
+    .emptyRow {
+      padding: 20px;
+      text-align: center;
+      color: #000;
+    }
+  }
+}
