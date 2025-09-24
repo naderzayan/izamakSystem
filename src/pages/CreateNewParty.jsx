@@ -32,16 +32,17 @@ export default function CreateNewParty() {
                 body: formData,
             });
 
-            if (!response.ok) {
-                throw new Error("error not added");
-            }
-
             const data = await response.json();
-            console.log("Party Added:", data);
+            console.log("Party Added Response:", data);
 
-            navigate("/mainpartydata");
+            if (response.ok && data) {
+                navigate("/mainpartydata");
+            } else {
+                alert(data?.message || "لم يتم إضافة الحفلة");
+            }
         } catch (error) {
             console.error("Error saving party:", error);
+            alert("حصل خطأ في الاتصال بالسيرفر");
         } finally {
             setLoading(false);
         }
@@ -49,7 +50,9 @@ export default function CreateNewParty() {
 
     return (
         <main className="mainOfCreateNewParty">
-            <Link to='/mainpartydata'><img src="logo.svg" alt="" /></Link>
+            <Link to="/mainpartydata">
+                <img src="logo.svg" alt="" />
+            </Link>
             <h1 className="title">إضافة حفل جديد</h1>
 
             {loading ? (
@@ -94,7 +97,7 @@ export default function CreateNewParty() {
                         <label htmlFor="fileUpload" className="uploadBtn">
                             رفع ملف <FaCloudUploadAlt />
                         </label>
-                        <input type="file" id="fileUpload" className="inputUpload" />
+                        <input type="file" id="fileUpload" className="inputUpload" onChange={(e) => setFile(e.target.files[0])} />
                     </div>
 
                     <div className="dataOfNewParty">

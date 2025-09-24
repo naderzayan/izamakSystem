@@ -12,6 +12,7 @@ export default function MainPartyData() {
     const [lastPage, setLastPage] = useState(1);
     const [showModal, setShowModal] = useState(false);
     const [deleteIndex, setDeleteIndex] = useState(null);
+    const [deletePartyName, setDeletePartyName] = useState("");
     const [loading, setLoading] = useState(false);
 
     const baseUrl = "https://www.izemak.com/azimak/public/api/parties";
@@ -39,6 +40,7 @@ export default function MainPartyData() {
 
     const confirmDelete = (index) => {
         setDeleteIndex(index);
+        setDeletePartyName(parties[index].name);
         setShowModal(true);
     };
 
@@ -54,6 +56,7 @@ export default function MainPartyData() {
         setParties(updatedParties);
         setShowModal(false);
         setDeleteIndex(null);
+        setDeletePartyName("");
     };
 
     const handleSearch = () => {
@@ -176,7 +179,7 @@ export default function MainPartyData() {
             {showModal && (
                 <div className="modalOverlay">
                     <div className="modal">
-                        <h3>هل متأكد من الحذف؟</h3>
+                        <h3>هل متأكد من حذف الحفلة "{deletePartyName}"؟</h3>
                         <div className="modalActions">
                             <button className="confirmBtn" onClick={handleDelete}>
                                 نعم
