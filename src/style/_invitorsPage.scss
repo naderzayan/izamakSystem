@@ -7,16 +7,25 @@
   .pageHeader {
     display: flex;
     justify-content: center;
+    padding-bottom: 1em;
 
     .logo {
       height: 150px;
       width: 150px;
+      border: 1px solid #7A6B88;
+      background: #ede9f1;
+      border-radius: .5em;
     }
 
     .actions {
       display: flex;
       align-items: center;
-      gap: 2.5em;
+      gap: 6em;
+
+      .search {
+        display: flex;
+        gap: .5em;
+      }
 
       input {
         border: 1px solid #000;

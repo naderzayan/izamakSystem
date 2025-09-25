@@ -63,8 +63,11 @@
         justify-content: center;
 
         img {
-            height: 200px;
-            width: 200px;
+            height: 150px;
+            width: 150px;
+            border: 1px solid #7A6B88;
+            background: #ede9f1;
+            border-radius: .5em;
         }
 
         label {

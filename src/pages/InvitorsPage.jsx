@@ -53,17 +53,25 @@ export default function InvitorsPage() {
         <main className="invitorsPage">
             <header className="pageHeader">
                 <div className="actions">
-                    <input type="text" placeholder="ادخل اسم المدعو" value={search} onChange={(e) => setSearch(e.target.value)} onKeyDown={(e) => e.key === "Enter" && handleSearch()} />
-                    <button onClick={handleSearch}>بحث</button>
-                <Link to='/mainpartydata'><img src="/logo.svg" alt="Logo" className="logo" /></Link>
-                    <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
-                        <option>All</option>
-                        <option>Invited</option>
-                        <option>Rejected</option>
-                        <option>Accepted</option>
-                        <option>Faild</option>
-                        <option>Arrived</option>
-                    </select>
+                    <div>
+                        <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
+                            <option>All</option>
+                            <option>Invited</option>
+                            <option>Rejected</option>
+                            <option>Accepted</option>
+                            <option>Faild</option>
+                            <option>Arrived</option>
+                        </select>
+                    </div>
+                    <div>
+                        <Link to="/mainpartydata">
+                            <img src="/logo.svg" alt="Logo" className="logo" />
+                        </Link>
+                    </div>
+                    <div className="search">
+                        <input type="text" placeholder="ادخل اسم المدعو" value={search} onChange={(e) => setSearch(e.target.value)} onKeyDown={(e) => e.key === "Enter" && handleSearch()} />
+                        <button onClick={handleSearch}>بحث</button>
+                    </div>
                 </div>
             </header>
 
@@ -88,8 +96,12 @@ export default function InvitorsPage() {
                                     <td>{invitor.phoneNumber}</td>
                                     <td>{invitor.status}</td>
                                     <td>
-                                        <button className="editBtn"><FaUserEdit /></button>
-                                        <button className="deleteBtn"><MdDelete /></button>
+                                        <button className="editBtn">
+                                            <FaUserEdit />
+                                        </button>
+                                        <button className="deleteBtn">
+                                            <MdDelete />
+                                        </button>
                                     </td>
                                 </tr>
                             ))
