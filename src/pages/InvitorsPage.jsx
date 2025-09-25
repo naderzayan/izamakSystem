@@ -68,14 +68,14 @@ export default function InvitorsPage() {
                             <option>Arrived</option>
                         </select>
                     </div>
+                    <div>
+                        <Link to="/mainpartydata">
+                            <img src="/logo.svg" alt="Logo" className="logo" />
+                        </Link>
+                    </div>
                     <div className="search">
-                        <div>
-                            <Link to="/mainpartydata">
-                                <img src="/logo.svg" alt="Logo" className="logo" />
-                            </Link>
-                        </div>
-                        <button onClick={handleSearch}>بحث</button>
                         <input type="text" placeholder="ادخل اسم المدعو" value={search} onChange={(e) => setSearch(e.target.value)} onKeyDown={(e) => e.key === "Enter" && handleSearch()} />
+                        <button onClick={handleSearch}>بحث</button>
                     </div>
                 </div>
             </header>
@@ -100,12 +100,14 @@ export default function InvitorsPage() {
                                     <td>{invitor.phoneNumber}</td>
                                     <td>{invitor.status}</td>
                                     <td>
-                                        <button className="editBtn">
-                                            <FaUserEdit />
-                                        </button>
-                                        <button className="deleteBtn">
-                                            <MdDelete />
-                                        </button>
+                                        <div className="icons">
+                                            <button className="editBtn">
+                                                <Link to='/updateinvitor'><FaUserEdit /></Link>
+                                            </button>
+                                            <button className="deleteBtn">
+                                                <MdDelete />
+                                            </button>
+                                        </div>
                                     </td>
                                 </tr>
                             ))

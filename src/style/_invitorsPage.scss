@@ -87,5 +87,27 @@
       text-align: center;
       color: #000;
     }
+    .editBtn {
+      border: none;
+      background: none;
+      svg {
+        font-size: 20px;
+      }
+    }
+    .icons {
+      display: flex;
+      justify-content: center;
+      gap: 1.5em;
+    }
+    a {
+      color: #000;
+    }
+    .deleteBtn {
+      border: none;
+      background: none;
+      svg {
+        font-size: 20px;
+      }
+    }
   }
 }
