@@ -1,28 +1,33 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../style/_invitorsPage.scss";
 import { FaUserEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
-
+import { useLocation } from "react-router-dom";
 export default function InvitorsPage() {
-    const { partyId } = useParams();
+    // const { partyId } = useParams();
+    const location = useLocation();
     const [invitors, setInvitors] = useState([]);
     const [search, setSearch] = useState("");
     const [statusFilter, setStatusFilter] = useState("All");
     const [loading, setLoading] = useState(false);
-
     const baseUrl = "https://www.izemak.com/azimak/public/api";
+    const partyId = location.state?.partyId;
+    console.log(location.state);
 
     const fetchInvitors = async () => {
+        let cancelled = false;
+        setLoading(true);
         try {
-            setLoading(true);
-            const res = await fetch(`${baseUrl}/inviters/${partyId}`);
+            const res = await fetch(`https://www.izemak.com/azimak/public/api/party/${partyId}`);
+            if (!res.ok) throw new Error("No Data Added");
             const data = await res.json();
-            setInvitors(data.data || []);
-        } catch (error) {
-            console.error("Fetch error:", error);
+            const arr = data?.data.members ?? [];
+            if (!cancelled) setInvitors(arr);
+        } catch (err) {
+            console.log(err);
         } finally {
-            setLoading(false);
+            if (!cancelled) setLoading(false);
         }
     };
 
@@ -63,14 +68,14 @@ export default function InvitorsPage() {
                             <option>Arrived</option>
                         </select>
                     </div>
-                    <div>
-                        <Link to="/mainpartydata">
-                            <img src="/logo.svg" alt="Logo" className="logo" />
-                        </Link>
-                    </div>
                     <div className="search">
-                        <input type="text" placeholder="ادخل اسم المدعو" value={search} onChange={(e) => setSearch(e.target.value)} onKeyDown={(e) => e.key === "Enter" && handleSearch()} />
+                        <div>
+                            <Link to="/mainpartydata">
+                                <img src="/logo.svg" alt="Logo" className="logo" />
+                            </Link>
+                        </div>
                         <button onClick={handleSearch}>بحث</button>
+                        <input type="text" placeholder="ادخل اسم المدعو" value={search} onChange={(e) => setSearch(e.target.value)} onKeyDown={(e) => e.key === "Enter" && handleSearch()} />
                     </div>
                 </div>
             </header>
@@ -89,9 +94,8 @@ export default function InvitorsPage() {
                     </thead>
                     <tbody>
                         {filteredInvitors.length > 0 ? (
-                            filteredInvitors.map((invitor, index) => (
+                            filteredInvitors.map((invitor) => (
                                 <tr key={invitor.id}>
-                                    <td>{index + 1}</td>
                                     <td>{invitor.name}</td>
                                     <td>{invitor.phoneNumber}</td>
                                     <td>{invitor.status}</td>

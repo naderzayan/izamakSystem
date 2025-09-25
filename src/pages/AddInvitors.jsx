@@ -80,7 +80,9 @@ export default function AddInvitors() {
     return (
         <main className="mainOfAddInvitors">
             <div className="sideBar">
-                <Link to='/invitorspage'><h1>قائمة المدعوين</h1></Link>
+                <Link to="/invitorspage" state={{ partyId }}>
+                    <h1>قائمة المدعوين</h1>
+                </Link>
                 <ul>
                     {loading ? (
                         <p className="loading"> جاري تحميل البيانات...</p>
@@ -99,7 +101,9 @@ export default function AddInvitors() {
 
             <div className="addDetailis">
                 {error && <p className="error">{error}</p>}
-                <Link to='/mainpartydata'><img src="logo.svg" alt="" /></Link>
+                <Link to="/mainpartydata">
+                    <img src="logo.svg" alt="" />
+                </Link>
                 <h2>أدخل بيانات المدعو</h2>
                 <div className="name">
                     <label>الاسم</label>
