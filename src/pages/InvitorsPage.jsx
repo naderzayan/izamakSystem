@@ -4,8 +4,8 @@ import "../style/_invitorsPage.scss";
 import { FaUserEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { useLocation } from "react-router-dom";
+
 export default function InvitorsPage() {
-    // const { partyId } = useParams();
     const location = useLocation();
     const [invitors, setInvitors] = useState([]);
     const [search, setSearch] = useState("");
@@ -13,6 +13,7 @@ export default function InvitorsPage() {
     const [loading, setLoading] = useState(false);
     const baseUrl = "https://www.izemak.com/azimak/public/api";
     const partyId = location.state?.partyId;
+
     console.log(location.state);
 
     const fetchInvitors = async () => {
@@ -49,10 +50,9 @@ export default function InvitorsPage() {
     };
 
     const filteredInvitors = invitors.filter((invitor) => (statusFilter === "All" ? true : invitor.status === statusFilter.toLowerCase()));
-
     useEffect(() => {
         fetchInvitors();
-    }, [partyId]);
+    },[partyId]);
 
     return (
         <main className="invitorsPage">
