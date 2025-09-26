@@ -4,6 +4,12 @@ import "../style/_invitorsPage.scss";
 import { FaUserEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { useLocation } from "react-router-dom";
+import { FaFileExcel } from "react-icons/fa";
+import { FaFilePdf } from "react-icons/fa";
+import { ImCheckmark2 } from "react-icons/im";
+import { IoMdPersonAdd } from "react-icons/io";
+import { MdOutlineDeleteSweep } from "react-icons/md";
+import { FaEdit } from "react-icons/fa";
 
 export default function InvitorsPage() {
     const location = useLocation();
@@ -11,10 +17,14 @@ export default function InvitorsPage() {
     const [search, setSearch] = useState("");
     const [statusFilter, setStatusFilter] = useState("All");
     const [loading, setLoading] = useState(false);
+    const [showActionBtns, setShowActionBtns] = useState(false);
+    const [selectAll, setSelectAll] = useState(false);
+    const [showConfirm, setShowConfirm] = useState(false);
+    const [showEditModal, setShowEditModal] = useState(false); // 👈 نافذة تعديل الحالة
+    const [selectedStatus, setSelectedStatus] = useState("invited");
+
     const baseUrl = "https://www.izemak.com/azimak/public/api";
     const partyId = location.state?.partyId;
-
-    console.log(location.state);
 
     const fetchInvitors = async () => {
         let cancelled = false;
@@ -50,9 +60,40 @@ export default function InvitorsPage() {
     };
 
     const filteredInvitors = invitors.filter((invitor) => (statusFilter === "All" ? true : invitor.status === statusFilter.toLowerCase()));
+
     useEffect(() => {
         fetchInvitors();
-    },[partyId]);
+    }, [partyId]);
+
+    const handleToggleSelectAll = () => {
+        const newValue = !showActionBtns;
+        setShowActionBtns(newValue);
+        setSelectAll(newValue);
+    };
+
+    const handleDeleteClick = () => {
+        setShowConfirm(true);
+    };
+
+    const confirmDelete = () => {
+        setShowConfirm(false);
+    };
+
+    const cancelDelete = () => {
+        setShowConfirm(false);
+    };
+
+    const handleEditClick = () => {
+        setShowEditModal(true);
+    };
+
+    const confirmEdit = () => {
+        setShowEditModal(false);
+    };
+
+    const cancelEdit = () => {
+        setShowEditModal(false);
+    };
 
     return (
         <main className="invitorsPage">
@@ -89,7 +130,7 @@ export default function InvitorsPage() {
                             <th>اسم المدعو</th>
                             <th>رقم الهاتف</th>
                             <th>الحالة</th>
-                            <th>حذف وتعديل</th>
+                            <th>التعديل</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -102,10 +143,15 @@ export default function InvitorsPage() {
                                     <td>
                                         <div className="icons">
                                             <button className="editBtn">
-                                                <Link to='/updateinvitor'><FaUserEdit /></Link>
+                                                <Link to="/updateinvitor">
+                                                    <FaUserEdit />
+                                                </Link>
                                             </button>
                                             <button className="deleteBtn">
                                                 <MdDelete />
+                                            </button>
+                                            <button className="deleteBtn">
+                                                <input type="checkbox" checked={selectAll} readOnly />
                                             </button>
                                         </div>
                                     </td>
@@ -121,6 +167,60 @@ export default function InvitorsPage() {
                     </tbody>
                 </table>
             )}
+
+            {showConfirm && (
+                <div className="confirmOverlay">
+                    <div className="confirmBox">
+                        <p>هل متأكد من الحذف؟</p>
+                        <div className="confirmBtns">
+                            <button onClick={confirmDelete}>نعم</button>
+                            <button onClick={cancelDelete}>لا</button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {showEditModal && (
+                <div className="confirmOverlay">
+                    <div className="confirmBox">
+                        <p>تغيير الحالة</p>
+                        <div className="changeStatus">
+                            <select value={selectedStatus} onChange={(e) => setSelectedStatus(e.target.value)}>
+                                <option value="invited">invited</option>
+                                <option value="rejected">rejected</option>
+                                <option value="accepted">accepted</option>
+                                <option value="status">status</option>
+                            </select>
+                        </div>
+                        <div className="confirmBtns">
+                            <button onClick={confirmEdit}>تعديل</button>
+                            <button onClick={cancelEdit}>إلغاء</button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            <div className="bottomActions">
+                <button className={`exportExcelBtn ${showActionBtns ? "show" : "hide"}`} onClick={handleEditClick}>
+                    <FaEdit />
+                </button>
+                <button className={`exportExcelBtn ${showActionBtns ? "show" : "hide"}`} onClick={handleDeleteClick}>
+                    <MdOutlineDeleteSweep />
+                </button>
+
+                <button className="exportExcelBtn">
+                    <FaFileExcel />
+                </button>
+                <button className="exportPdfBtn">
+                    <FaFilePdf />
+                </button>
+                <button className="selectAllBtn" onClick={handleToggleSelectAll}>
+                    <ImCheckmark2 />
+                </button>
+                <button className="addInvitorBtn">
+                    <IoMdPersonAdd />
+                </button>
+            </div>
         </main>
     );
 }
