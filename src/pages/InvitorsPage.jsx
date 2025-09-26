@@ -5,6 +5,9 @@ import { FaUserEdit, FaFileExcel, FaFilePdf, FaEdit } from "react-icons/fa";
 import { MdDelete, MdOutlineDeleteSweep } from "react-icons/md";
 import { ImCheckmark2 } from "react-icons/im";
 import { IoMdPersonAdd } from "react-icons/io";
+import * as XLSX from "xlsx";
+import jsPDF from "jspdf";
+import "jspdf-autotable";
 
 export default function InvitorsPage() {
     const location = useLocation();
@@ -124,13 +127,41 @@ export default function InvitorsPage() {
                     body: JSON.stringify({ status: newStatus.toLowerCase() }),
                 });
             }
-
             setInvitors((prev) => prev.map((item) => ({ ...item, status: newStatus.toLowerCase() })));
         } catch (err) {
             console.error("Change status error:", err);
         } finally {
             setShowChangeStatusBox(false);
         }
+    };
+
+    const handleExportExcel = () => {
+        const dataForExcel = invitors.map((item) => ({
+            "اسم المدعو": item.name,
+            "رقم الهاتف": item.phoneNumber,
+            الحالة: item.status,
+        }));
+        const worksheet = XLSX.utils.json_to_sheet(dataForExcel);
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, "Invitors");
+        XLSX.writeFile(workbook, "invitors.xlsx");
+    };
+
+    const handleExportPDF = () => {
+        const doc = new jsPDF();
+        doc.setFontSize(16);
+        doc.text("قائمة المدعوين", 14, 15);
+
+        const tableColumn = ["اسم المدعو", "رقم الهاتف", "الحالة"];
+        const tableRows = invitors.map((item) => [item.name, item.phoneNumber, item.status]);
+
+        doc.autoTable({
+            head: [tableColumn],
+            body: tableRows,
+            startY: 25,
+        });
+
+        doc.save("invitors.pdf");
     };
 
     const filteredInvitors = invitors.filter((invitor) => (statusFilter === "All" ? true : invitor.status === statusFilter.toLowerCase()));
@@ -234,7 +265,7 @@ export default function InvitorsPage() {
                 <div className="confirmOverlay">
                     <div className="confirmBox">
                         <p>تغيير الحالة</p>
-                        <div>
+                        <div className="changeStatus">
                             <select value={newStatus} onChange={(e) => setNewStatus(e.target.value)}>
                                 <option>Invited</option>
                                 <option>Rejected</option>
@@ -261,10 +292,10 @@ export default function InvitorsPage() {
                         </button>
                     </>
                 )}
-                <button className="exportExcelBtn">
+                <button className="exportExcelBtn" onClick={handleExportExcel}>
                     <FaFileExcel />
                 </button>
-                <button className="exportPdfBtn">
+                <button className="exportPdfBtn" onClick={handleExportPDF}>
                     <FaFilePdf />
                 </button>
                 <button className="selectAllBtn" onClick={handleSelectAllClick}>
