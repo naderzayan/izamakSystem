@@ -24,8 +24,8 @@ export default function UpDateInvitor() {
                     <label>عدد مرات القرائة</label>
                     <input type="text" />
                 </div>
-                <div className="condition">
                     <label>الحالة</label>
+                <div className="condition">
                     <select>
                         <option value="invited">invited</option>
                         <option value="accepted">accepted</option>
