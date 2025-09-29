@@ -136,7 +136,7 @@ export default function MainPartyData() {
                                         <td>{party.address}</td>
                                         <td>
                                             <button className="editBtn">
-                                                <Link to="/AddInvitors" state={{ party }}>
+                                                <Link to="/AddInvitors" state={{ partyId: party?.id }}>
                                                     <BsDatabaseAdd />
                                                 </Link>
                                             </button>

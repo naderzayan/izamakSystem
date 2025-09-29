@@ -11,10 +11,9 @@ export default function AddInvitors() {
     const [saving, setSaving] = useState(false);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-
-    const currentParty = location.state?.party;
     const query = useMemo(() => new URLSearchParams(location.search), [location.search]);
-    const partyId = currentParty?.id ?? query.get("partyId");
+    const partyId =location.state?.partyId ?? query.get("partyId");
+    
 
     useEffect(() => {
         if (!partyId) return;

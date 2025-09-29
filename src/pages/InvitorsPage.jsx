@@ -7,7 +7,7 @@ import { ImCheckmark2 } from "react-icons/im";
 import { IoMdPersonAdd } from "react-icons/io";
 import * as XLSX from "xlsx";
 import jsPDF from "jspdf";
-import "jspdf-autotable";
+import autoTable from "jspdf-autotable";
 
 export default function InvitorsPage() {
     const location = useLocation();
@@ -155,7 +155,7 @@ export default function InvitorsPage() {
         const tableColumn = ["اسم المدعو", "رقم الهاتف", "الحالة"];
         const tableRows = invitors.map((item) => [item.name, item.phoneNumber, item.status]);
 
-        doc.autoTable({
+        autoTable(doc, {
             head: [tableColumn],
             body: tableRows,
             startY: 25,
@@ -174,10 +174,10 @@ export default function InvitorsPage() {
                         <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
                             <option>All</option>
                             <option>Invited</option>
-                            <option>Rejected</option>
-                            <option>Accepted</option>
-                            <option>Faild</option>
                             <option>Arrived</option>
+                            <option>Accepted</option>
+                            <option>Rejected</option>
+                            <option>Faild</option>
                         </select>
                     </div>
                     <div>
@@ -214,7 +214,7 @@ export default function InvitorsPage() {
                                     <td>
                                         <div className="icons">
                                             <button className="editBtn">
-                                                <Link to="/updateinvitor">
+                                                <Link to="/updateinvitor" state={invitor}>
                                                     <FaUserEdit />
                                                 </Link>
                                             </button>
@@ -268,9 +268,10 @@ export default function InvitorsPage() {
                         <div className="changeStatus">
                             <select value={newStatus} onChange={(e) => setNewStatus(e.target.value)}>
                                 <option>Invited</option>
-                                <option>Rejected</option>
+                                <option>Arrived</option>
                                 <option>Accepted</option>
-                                <option>Status</option>
+                                <option>Rejected</option>
+                                <option>Faild</option>
                             </select>
                         </div>
                         <div className="confirmBtns">
@@ -302,7 +303,7 @@ export default function InvitorsPage() {
                     <ImCheckmark2 />
                 </button>
                 <button className="addInvitorBtn">
-                    <Link to="/addinvitors">
+                    <Link to="/addinvitors" state={{ partyId }}>
                         <IoMdPersonAdd />
                     </Link>
                 </button>
