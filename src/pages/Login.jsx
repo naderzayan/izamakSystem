@@ -31,26 +31,30 @@ export default function Login() {
 
     return (
         <main className="mainOfLogin">
-            <form className="loginBox" onSubmit={handleSubmit}>
-                <img src="اعزمك-01.png" alt="" className="logo" />
+            <div className="form">
+                <form className="loginBox" onSubmit={handleSubmit}>
+                    <img src="اعزمك-01.png" alt="" className="logo" />
 
-                <div className="input">
-                    <input type="text" placeholder="اسم المستخدم" value={username} onChange={(e) => setUsername(e.target.value)} required />
-                </div>
-                <div className="input">
-                    <input type="password" placeholder="كلمة المرور" value={password} onChange={(e) => setPassword(e.target.value)} required />
-                </div>
-                <div className="input">
-                    <input type="email" placeholder="ادخل الايميل" value={email} onChange={(e) => setEmail(e.target.value)} required />
-                </div>
+                    <div className="input">
+                        <input type="text" placeholder="اسم المستخدم" value={username} onChange={(e) => setUsername(e.target.value)} required />
+                    </div>
+                    <div className="input">
+                        <input type="password" placeholder="كلمة المرور" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                    </div>
+                    <div className="input">
+                        <input type="email" placeholder="ادخل الايميل" value={email} onChange={(e) => setEmail(e.target.value)} required />
+                    </div>
 
-                {error && <p className="error">{error}</p>}
+                    {error && <p className="error">{error}</p>}
 
-                <button type="submit" className="loginBtn">
-                    تسجيل الدخول
-                </button>
-            </form>
-            <Footer />
+                    <button type="submit" className="loginBtn">
+                        تسجيل الدخول
+                    </button>
+                </form>
+            </div>
+            <div>
+                <Footer />
+            </div>
         </main>
     );
 }
