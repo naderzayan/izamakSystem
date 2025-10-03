@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../style/_updateinvitor.scss";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import Footer from "../components/Footer";
 
 export default function UpDateInvitor() {
     const location = useLocation();
@@ -46,7 +47,7 @@ export default function UpDateInvitor() {
         <main className="mainOfUpDateInvitor">
             <div>
                 <Link to="/mainpartydata">
-                    <img src="logo.svg" alt="" />
+                    <img src="اعزمك-01.png" alt="" />
                 </Link>
             </div>
             <h1>تعديل البيانات</h1>
@@ -76,6 +77,7 @@ export default function UpDateInvitor() {
                     <button type="submit">تعديل</button>
                 </div>
             </form>
+            <Footer />
         </main>
     );
 }

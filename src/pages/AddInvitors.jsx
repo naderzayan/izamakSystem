@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import "../style/_addInvitors.scss";
 import { Link, useLocation } from "react-router-dom";
+import Footer from "../components/Footer";
 
 export default function AddInvitors() {
     const location = useLocation();
@@ -97,11 +98,10 @@ export default function AddInvitors() {
                     )}
                 </ul>
             </div>
-
             <div className="addDetailis">
                 {error && <p className="error">{error}</p>}
                 <Link to="/mainpartydata">
-                    <img src="logo.svg" alt="" />
+                    <img src="اعزمك-01.png" alt="" />
                 </Link>
                 <h2>أدخل بيانات المدعو</h2>
                 <div className="name">
@@ -132,6 +132,7 @@ export default function AddInvitors() {
                         <input type="file" id="fileUpload" className="inputUpload" />
                     </div>
                 </div>
+                <Footer />
             </div>
         </main>
     );

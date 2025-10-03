@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../style/_login.scss";
+import Footer from "../components/Footer";
 
 export default function Login() {
     const navigate = useNavigate();
@@ -31,7 +32,7 @@ export default function Login() {
     return (
         <main className="mainOfLogin">
             <form className="loginBox" onSubmit={handleSubmit}>
-                <img src="logo.svg" alt="Logo" className="logo" />
+                <img src="اعزمك-01.png" alt="" className="logo" />
 
                 <div className="input">
                     <input type="text" placeholder="اسم المستخدم" value={username} onChange={(e) => setUsername(e.target.value)} required />
@@ -49,6 +50,7 @@ export default function Login() {
                     تسجيل الدخول
                 </button>
             </form>
+            <Footer />
         </main>
     );
 }

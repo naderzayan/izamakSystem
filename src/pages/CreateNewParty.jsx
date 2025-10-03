@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../style/_createNewParty.scss";
 import { FaCloudUploadAlt } from "react-icons/fa";
+import Footer from "../components/Footer";
 
 export default function CreateNewParty() {
     const navigate = useNavigate();
@@ -51,7 +52,7 @@ export default function CreateNewParty() {
     return (
         <main className="mainOfCreateNewParty">
             <Link to="/mainpartydata">
-                <img src="logo.svg" alt="" />
+                <img src="اعزمك-01.png" alt="" />
             </Link>
             <h1 className="title">إضافة حفل جديد</h1>
 
@@ -107,6 +108,7 @@ export default function CreateNewParty() {
                     </div>
                 </form>
             )}
+            <Footer />
         </main>
     );
 }

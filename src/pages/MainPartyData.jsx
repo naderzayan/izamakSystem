@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "../style/_mainPartyData.scss";
 import { BsDatabaseAdd } from "react-icons/bs";
 import { MdDelete } from "react-icons/md";
+import Footer from "../components/Footer";
 
 export default function MainPartyData() {
     const [parties, setParties] = useState([]);
@@ -89,7 +90,7 @@ export default function MainPartyData() {
                 </button>
                 <div>
                     <Link to="/mainpartydata">
-                        <img src="logo.svg" alt="" />
+                        <img src="اعزمك-01.png" alt="" />
                     </Link>
                 </div>
                 <div className="search">
@@ -191,6 +192,7 @@ export default function MainPartyData() {
                     </div>
                 </div>
             )}
+            <Footer />
         </main>
     );
 }

@@ -8,6 +8,7 @@ import { IoMdPersonAdd } from "react-icons/io";
 import * as XLSX from "xlsx";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
+import Footer from "../components/Footer";
 
 export default function InvitorsPage() {
     const location = useLocation();
@@ -182,7 +183,7 @@ export default function InvitorsPage() {
                     </div>
                     <div>
                         <Link to="/mainpartydata">
-                            <img src="/logo.svg" alt="Logo" className="logo" />
+                            <img src="اعزمك-01.png" alt="" className="logo" />
                         </Link>
                     </div>
                     <div className="search">
@@ -308,6 +309,7 @@ export default function InvitorsPage() {
                     </Link>
                 </button>
             </div>
+            <Footer />
         </main>
     );
 }
