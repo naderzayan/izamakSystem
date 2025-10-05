@@ -90,7 +90,7 @@ export default function MainPartyData() {
                 </button>
                 <div>
                     <Link to="/mainpartydata">
-                        <img src="اعزمك-01.png" alt="" />
+                        <img src="/اعزمك-01.png" alt="" />
                     </Link>
                 </div>
                 <div className="search">

@@ -33,7 +33,7 @@ export default function Login() {
         <main className="mainOfLogin">
             <div className="form">
                 <form className="loginBox" onSubmit={handleSubmit}>
-                    <img src="اعزمك-01.png" alt="" className="logo" />
+                    <img src="/اعزمك-01.png" alt="" className="logo" />
 
                     <div className="input">
                         <input type="text" placeholder="اسم المستخدم" value={username} onChange={(e) => setUsername(e.target.value)} required />

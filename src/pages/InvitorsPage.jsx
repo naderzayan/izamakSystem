@@ -183,7 +183,7 @@ export default function InvitorsPage() {
                     </div>
                     <div>
                         <Link to="/mainpartydata">
-                            <img src="اعزمك-01.png" alt="" className="logo" />
+                            <img src="/اعزمك-01.png" alt="" className="logo" />
                         </Link>
                     </div>
                     <div className="search">

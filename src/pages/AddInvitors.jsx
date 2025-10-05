@@ -101,7 +101,7 @@ export default function AddInvitors() {
             <div className="addDetailis">
                 {error && <p className="error">{error}</p>}
                 <Link to="/mainpartydata">
-                    <img src="اعزمك-01.png" alt="" />
+                    <img src="/اعزمك-01.png" alt="" />
                 </Link>
                 <h2>أدخل بيانات المدعو</h2>
                 <div className="name">

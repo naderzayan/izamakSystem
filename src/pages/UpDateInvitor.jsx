@@ -47,7 +47,7 @@ export default function UpDateInvitor() {
         <main className="mainOfUpDateInvitor">
             <div>
                 <Link to="/mainpartydata">
-                    <img src="اعزمك-01.png" alt="" />
+                    <img src="/اعزمك-01.png" alt="" />
                 </Link>
             </div>
             <h1>تعديل البيانات</h1>
